@@ -2,22 +2,19 @@ import { marked } from "marked";
 import Image from "next/image";
 import Head from "next/head";
 import classes from "@/styles/blogs/blogs.module.css";
+import fs from "fs"; // Change require to import
+import path from "path"; // Change require to import
+import matter from "gray-matter";
 
-const Blog = ({ frontMatter, content, slug }) => {
+const Blog = ({ frontMatter, content }) => {
   return (
     <>
       <Head>
         <title>{frontMatter.title}</title>
         <meta charSet="utf-8"></meta>
         <meta property="og:type" content="website" />
-        <meta
-          name="keywords"
-          content={frontMatter.keywords}
-        ></meta>
-        <meta
-          name="description"
-          content={frontMatter.description}
-        ></meta>
+        <meta name="keywords" content={frontMatter.keywords}></meta>
+        <meta name="description" content={frontMatter.description}></meta>
       </Head>
       <div className={classes.mainContainer}>
         <div className={classes.contentWrapper}>
@@ -42,12 +39,8 @@ const Blog = ({ frontMatter, content, slug }) => {
 
 export default Blog;
 
-const fs = require("fs");
-import path from "path";
-import matter from "gray-matter";
-
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join("posts"));
+  const files = fs.readdirSync(path.join("posts")); // Using imported fs and path
 
   const paths = files.map((file) => {
     return {
@@ -64,7 +57,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const markdown = fs.readFileSync(path.join("posts", slug + ".md"), "utf-8");
+  const markdown = fs.readFileSync(path.join("posts", slug + ".md"), "utf-8"); // Using imported fs and path
   const { data: frontMatter, content } = matter(markdown);
 
   return {
