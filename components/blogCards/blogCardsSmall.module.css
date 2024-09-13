@@ -1,0 +1,55 @@
+.mainContainer {
+  width: 100%;
+  min-height: 300px;
+  min-width: 190px;
+  margin-bottom: 2rem;
+  margin-right: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3x ease;
+  border: 1px solid rgb(0, 0, 0, 0.25);
+  padding-bottom: 20px;
+}
+
+.mainContainer:hover {
+  box-shadow: 1px 1px 18px -8px rgba(0, 0, 0, 0.8);
+}
+
+.mainContainer a {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  text-decoration: none;
+  color: black;
+}
+
+.imgWraper {
+  height: 80%;
+  object-fit: contain;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+}
+
+.mainContainer h3 {
+  margin-top: 8px;
+  font-size: 18px;
+  padding: 0 20px;
+}
+
+.mainContainer p {
+  font-size: 12px;
+  margin-top: 4px;
+  padding: 0 20px 0 20px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* Number of lines you want to display */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 740px) {
+  .mainContainer {
+    width: 200px;
+    margin-bottom: 1rem;
+  }
+}
