@@ -1,11 +1,12 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { Blog } from "@/app/blogs/blogType";
 
-const postsDirectory = path.join(process.cwd(), "posts");
-console.log("[]", postsDirectory);
+// Function to get sorted blog posts
+export async function getSortedPostsData(): Promise<Blog[]> {
+  const postsDirectory = path.join(process.cwd(), "posts");
 
-export function getSortedPostsData() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
@@ -19,18 +20,12 @@ export function getSortedPostsData() {
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
 
-    // Combine the data with the id
     return {
       id,
       ...matterResult.data,
-    };
+    } as Blog;
   });
+
   // Sort posts by date
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
