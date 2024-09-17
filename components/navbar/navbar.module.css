@@ -1,0 +1,31 @@
+.mainContainer {
+  height: 80px;
+  width: 100vw;
+  padding: 1rem 4rem;
+  display: flex;
+  align-items: center;
+  background: #2a3b40;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
+  border-radius: 35px;
+}
+
+.header h1 {
+  margin-top: 0.5rem;
+  font-size: 34px;
+  color: #f1e2d2;
+}
